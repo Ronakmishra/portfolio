@@ -8,7 +8,7 @@ export const DATA = {
   location: "Boston, MA",
   locationLink: "https://www.google.com/maps/place/Boston,+MA",
   description:
-    "Data Engineer | Analytics Specialist | Generative AI Enthusiast. I build scalable data pipelines, real-time analytics systems, and AI-infused solutions.",
+    "Data Engineer | Analytics Specialist | Gen AI Enthusiast. I build scalable data pipelines, real-time analytics systems, and AI-infused solutions.",
   summary: `
 I recently graduated from [Northeastern University](https://www.northeastern.edu/), where I focused on building data-driven systems at scale and applying analytics and GenAI to solve real business problems.
 

@@ -50,16 +50,26 @@ export default function Page() {
             </div>
           </div>
         </section>
-        <section id="about">
-          <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <h2 className="text-xl font-bold">About</h2>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 4}>
-            <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-              {DATA.summary}
-            </Markdown>
-          </BlurFade>
+
+        <section id="about" className="relative w-full">
+          {/* 🌈 Softer Glow Background */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none">
+            <div className="h-[180px] w-[800px] rounded-[48px] bg-gradient-to-br from-indigo-300/15 via-pink-300/10 to-purple-300/15 blur-[80px] opacity-40" />
+          </div>
+
+          {/* Section Content */}
+          <div className="space-y-6">
+            <BlurFade delay={BLUR_FADE_DELAY * 3}>
+              <h2 className="text-xl font-bold">About</h2>
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 4}>
+              <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+                {DATA.summary}
+              </Markdown>
+            </BlurFade>
+          </div>
         </section>
+
         <section id="work">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 5}>
@@ -155,7 +165,7 @@ export default function Page() {
         </div>
       </section> */}
 
-        <section id="projects">
+        {/* <section id="projects">
           <div className="space-y-12 w-full py-12">
             <BlurFade delay={BLUR_FADE_DELAY * 11}>
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -164,6 +174,35 @@ export default function Page() {
                     My Projects
                   </div>
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                    Check out my latest work
+                  </h2>
+                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    I&apos;ve worked on a variety of projects, from simple websites to
+                    complex web applications. Here are a few of my favorites.
+                  </p>
+                </div>
+              </div>
+            </BlurFade>
+
+            <ProjectCarousel projects={DATA.projects} />
+          </div>
+        </section> */}
+
+        <section id="projects" className="relative w-full py-20">
+          {/* Full-section Glow Background */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/10 to-indigo-500/20 blur-3xl opacity-60" />
+          </div>
+
+          {/* Main Content Container */}
+          <div className="w-full max-w-5xl mx-auto space-y-12">
+            <BlurFade delay={BLUR_FADE_DELAY * 11}>
+              <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <div className="space-y-2">
+                  <div className="inline-block rounded-xl bg-foreground text-background px-5 py-2 text-lg font-bold">
+                    My Projects
+                  </div>
+                  <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
                     Check out my latest work
                   </h2>
                   <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
