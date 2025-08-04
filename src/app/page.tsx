@@ -12,7 +12,7 @@ import { Typewriter } from "react-simple-typewriter";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { DATA } from "@/data/resume";
+import { DATA, type WorkItem, type EducationItem } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
 // for contact
@@ -127,7 +127,7 @@ export default function Page() {
             <BlurFade delay={BLUR_FADE_DELAY * 5}>
               <h2 className="text-xl font-bold">Work Experience</h2>
             </BlurFade>
-            {DATA.work.map((work, id) => (
+            {DATA.work.map((work: WorkItem, id) => (
               <BlurFade key={work.company} delay={BLUR_FADE_DELAY * 6 + id * 0.05}>
                 <ResumeCard
                   key={work.company}
@@ -149,7 +149,7 @@ export default function Page() {
             <BlurFade delay={BLUR_FADE_DELAY * 7}>
               <h2 className="text-xl font-bold">Education</h2>
             </BlurFade>
-            {DATA.education.map((education, id) => (
+            {DATA.education.map((education: EducationItem, id) => (
               <BlurFade key={education.school} delay={BLUR_FADE_DELAY * 8 + id * 0.05}>
                 <ResumeCard
                   key={education.school}
