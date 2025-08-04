@@ -119,17 +119,16 @@ export default function BackgroundNetwork() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed inset-0 -z-10">
+    <div className="fixed top-0 left-0 w-full h-[40vh] md:inset-0 md:h-full -z-10">
       {/* Particles Canvas */}
       <div
         id="particles-js"
-        className="absolute inset-0"
-        style={{ width: "100%", height: "100%" }}
+        className="absolute inset-0 w-full h-full"
       />
 
       {/* Theme-based Radial Gradient Overlay */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
           background:
             theme === "dark"
