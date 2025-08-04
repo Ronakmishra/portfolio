@@ -79,7 +79,7 @@
 
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ProjectCard } from "./project-card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -111,17 +111,17 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
   const [fade, setFade] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const triggerFade = () => {
+  const triggerFade = useCallback(() => {
     setFade(true);
     setTimeout(() => setFade(false), 200); // Fade out briefly
-  };
+  }, []);
 
-  const next = () => {
+  const next = useCallback(() => {
     triggerFade();
     setIndex((prev) =>
       prev + itemsPerPage >= projects.length ? 0 : prev + itemsPerPage
     );
-  };
+  }, [itemsPerPage, projects.length, triggerFade]);
 
   const prev = () => {
     triggerFade();
@@ -144,7 +144,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isHovered, projects.length]);
+  }, [isHovered, projects.length, next]);
 
   return (
     <section
