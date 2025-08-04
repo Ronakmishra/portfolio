@@ -119,7 +119,7 @@ export default function BackgroundNetwork() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-[40vh] md:inset-0 md:h-full -z-10">
+    <div className="fixed top-0 left-0 w-full h-[30vh] md:inset-0 md:h-full -z-10">
       {/* Particles Canvas */}
       <div
         id="particles-js"
@@ -136,6 +136,8 @@ export default function BackgroundNetwork() {
               : "radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0) 60%)",
         }}
       />
+      {/* Top-to-transparent Gradient Overlay */}
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-background to-transparent pointer-events-none" />
     </div>
   );
 }
