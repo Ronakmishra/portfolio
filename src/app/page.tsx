@@ -1,3 +1,5 @@
+"use client";
+
 import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
@@ -6,6 +8,7 @@ import ProjectCarousel from "@/components/ProjectCarousel";
 
 import BackgroundNetwork from "@/components/BackgroundNetwork";
 
+import { Typewriter } from "react-simple-typewriter";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -25,7 +28,7 @@ export default function Page() {
       {/* <main className="flex flex-col min-h-[100dvh] space-y-10">
        */}
       <main className="relative flex flex-col min-h-[100dvh] space-y-10">
-        <section id="hero">
+        {/* <section id="hero">
           <div className="mx-auto w-full max-w-2xl space-y-8">
             <div className="gap-2 flex justify-between">
               <div className="flex-col flex flex-1 space-y-1.5">
@@ -41,6 +44,55 @@ export default function Page() {
                   text={DATA.description}
                 />
               </div>
+              <BlurFade delay={BLUR_FADE_DELAY}>
+                <Avatar className="size-28 border">
+                  <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
+                  <AvatarFallback>{DATA.initials}</AvatarFallback>
+                </Avatar>
+              </BlurFade>
+            </div>
+          </div>
+        </section> */}
+
+        <section id="hero">
+          <div className="mx-auto w-full max-w-2xl space-y-8">
+            <div className="gap-2 flex justify-between">
+              <div className="flex-col flex flex-1 space-y-1.5">
+                {/* Line 1: Greeting */}
+                <BlurFadeText
+                  delay={BLUR_FADE_DELAY}
+                  className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+                  yOffset={8}
+                  text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
+                />
+
+                {/* Line 2: Constant + Animated Typewriter Text */}
+                <BlurFade delay={BLUR_FADE_DELAY + 0.02}>
+                  <div className="text-lg sm:text-xl font-normal text-muted-foreground">
+                    I'm into{" "}
+                    <span className="font-bold underline">
+                      <Typewriter
+                        words={["Data Engineering", "Data Analytics", "Gen AI"]}
+                        loop={true}
+                        cursor
+                        cursorStyle="|"
+                        typeSpeed={60}
+                        deleteSpeed={30}
+                        delaySpeed={2000}
+                      />
+                    </span>
+                  </div>
+                </BlurFade>
+
+                {/* Line 3: Static Description */}
+                <BlurFadeText
+                  className="max-w-[600px] md:text-xl"
+                  delay={BLUR_FADE_DELAY + 0.04}
+                  text="I build scalable data pipelines, real-time analytics systems, and AI-infused solutions."
+                />
+              </div>
+
+              {/* Avatar */}
               <BlurFade delay={BLUR_FADE_DELAY}>
                 <Avatar className="size-28 border">
                   <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
