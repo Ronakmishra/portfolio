@@ -245,8 +245,121 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
     },
   },
 
+
   work,
   education,
+
+  work: [
+    {
+      company: "Metco Scientific",
+      href: "https://www.metcoscientific.com/",
+      badges: ["Data Analytics", "ML Models", "Gen AI"],
+      location: "Mumbai, India",
+      title: "Data Analyst – Medical & Scientific Ops",
+      logoUrl: "/metco.png", // Add this logo to /public
+      start: "May 2022",
+      end: "Jul 2023",
+      description:
+        "Built predictive models (XGBoost, Logistic Regression) to anticipate lab equipment failures from 1M+ sensor logs, cutting downtime by 35%. Automated preprocessing (imputation, lag features) using Python/pandas. Delivered Power BI dashboards to QA and compliance teams for model performance and drift monitoring.",
+    },
+    {
+      company: "Accenture",
+      href: "https://www.accenture.com/",
+      badges: ["Data Engineering", "Analytics"],
+      location: "India (Remote + Onsite)",
+      title: "Software Engineer – Data Systems",
+      logoUrl: "/acc.png", // Add this logo to /public
+      start: "May 2021",
+      end: "Apr 2022",
+      description:
+        "Developed Spark and AWS Glue pipelines processing millions of daily records. Designed ETL workflows for regulatory and financial reporting across major banking clients. Optimized SQL and integrated data from SAP HANA, Oracle, and flat files into centralized S3-based data lakes.",
+    },
+
+    // {
+    //   company: "Nvidia",
+    //   href: "https://nvidia.com/",
+    //   badges: [],
+    //   location: "Santa Clara, CA",
+    //   title: "Software Engineer",
+    //   logoUrl: "/nvidia.png",
+    //   start: "January 2020",
+    //   end: "April 2020",
+    //   description:
+    //     "Architected and wrote the entire MVP of the GeForce Now Cloud Gaming internal admin and A/B testing dashboard using React, Redux, TypeScript, and Python.",
+    // },
+    // {
+    //   company: "Splunk",
+    //   href: "https://splunk.com",
+    //   badges: [],
+    //   location: "San Jose, CA",
+    //   title: "Software Engineer",
+    //   logoUrl: "/splunk.svg",
+    //   start: "January 2019",
+    //   end: "April 2019",
+    //   description:
+    //     "Co-developed a prototype iOS app with another intern in Swift for the new Splunk Phantom security orchestration product (later publicly demoed and launched at .conf annual conference in Las Vegas). Implemented a realtime service for the iOS app in Django (Python) and C++; serialized data using protobufs transmitted over gRPC resulting in an approximate 500% increase in data throughput.",
+    // },
+    // {
+    //   company: "Lime",
+    //   href: "https://li.me/",
+    //   badges: [],
+    //   location: "San Francisco, CA",
+    //   title: "Software Engineer",
+    //   logoUrl: "/lime.svg",
+    //   start: "January 2018",
+    //   end: "April 2018",
+    //   description:
+    //     "Proposed and implemented an internal ruby API for sending/receiving commands to scooters over LTE networks. Developed a fully automated bike firmware update system to handle asynchronous firmware updates of over 100,000+ scooters worldwide, and provide progress reports in real-time using React, Ruby on Rails, PostgreSQL and AWS EC2 saving hundreds of developer hours.",
+    // },
+    // {
+    //   company: "Mitre Media",
+    //   href: "https://mitremedia.com/",
+    //   badges: [],
+    //   location: "Toronto, ON",
+    //   title: "Software Engineer",
+    //   logoUrl: "/mitremedia.png",
+    //   start: "May 2017",
+    //   end: "August 2017",
+    //   description:
+    //     "Designed and implemented a robust password encryption and browser cookie storage system in Ruby on Rails. Leveraged the Yahoo finance API to develop the dividend.com equity screener",
+    // },
+  ],
+  education: [
+    {
+      school: "Northeastern University",
+      href: "https://www.northeastern.edu/",
+      degree: "Master’s in Information Systems",
+      logoUrl: "/neu.png",
+      start: "Sep 2023",
+      end: "May 2025",
+    },
+    {
+      school: "Chandigarh Engineering College",
+      href: "https://www.cgc.edu.in/",
+      degree: "B.Tech in Electronics and Communication",
+      logoUrl: "/cgc.png",
+      start: "Jun 2016",
+      end: "Apr 2020",
+    },
+
+    // {
+    //   school: "Wilfrid Laurier University",
+    //   href: "https://wlu.ca",
+    //   degree: "Bachelor's Degree of Business Administration (BBA)",
+    //   logoUrl: "/laurier.png",
+    //   start: "2016",
+    //   end: "2021",
+    // },
+    // {
+    //   school: "International Baccalaureate",
+    //   href: "https://ibo.org",
+    //   degree: "IB Diploma",
+    //   logoUrl: "/ib.png",
+    //   start: "2012",
+    //   end: "2016",
+    // },
+  ],
+
   projects: [
     {
       title: "Chat Collect",

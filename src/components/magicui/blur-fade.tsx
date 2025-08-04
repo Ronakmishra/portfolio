@@ -8,6 +8,13 @@ import {
 } from "framer-motion";
 import { useRef } from "react";
 
+type MarginValue = `${number}${"px" | "%"}`;
+type Margin =
+  | MarginValue
+  | `${MarginValue} ${MarginValue}`
+  | `${MarginValue} ${MarginValue} ${MarginValue}`
+  | `${MarginValue} ${MarginValue} ${MarginValue} ${MarginValue}`;
+
 interface BlurFadeProps {
   children: React.ReactNode;
   className?: string;
@@ -19,7 +26,7 @@ interface BlurFadeProps {
   delay?: number;
   yOffset?: number;
   inView?: boolean;
-  inViewMargin?: string;
+  inViewMargin?: Margin;
   blur?: string;
 }
 const BlurFade = ({

@@ -93,11 +93,20 @@ interface ProjectProps {
   technologies: readonly string[];
   image?: string;
   video?: string;
+
   links?: readonly {
     icon: React.ReactNode;
     type: string;
     href: string;
   }[];
+
+  links?:
+    | readonly {
+        icon: React.ReactNode;
+        type: string;
+        href: string;
+      }[];
+
 }
 
 interface CarouselProps {
