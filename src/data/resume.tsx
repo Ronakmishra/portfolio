@@ -25,7 +25,7 @@ export interface EducationItem {
 const work: WorkItem[] = [
   {
     company: "Metco Scientific",
-    href: "https://www.metcoscientific.com/",
+    href: "#",
     badges: ["Data Analytics", "ML Models", "Gen AI"],
     location: "Mumbai, India",
     title: "Data Analyst – Medical & Scientific Ops",
@@ -37,7 +37,7 @@ const work: WorkItem[] = [
   },
   {
     company: "Accenture",
-    href: "https://www.accenture.com/",
+    href: "#",
     badges: ["Data Engineering", "Analytics"],
     location: "India (Remote + Onsite)",
     title: "Software Engineer – Data Systems",
@@ -246,7 +246,6 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
       },
     },
   },
-
 
   work,
   education,
