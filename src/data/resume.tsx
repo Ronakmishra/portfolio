@@ -252,7 +252,11 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
   work: [
     {
       company: "Metco Scientific",
+
+      href: "#",
+
       href: "https://www.metcoscientific.com/",
+
       badges: ["Data Analytics", "ML Models", "Gen AI"],
       location: "Mumbai, India",
       title: "Data Analyst – Medical & Scientific Ops",
@@ -264,7 +268,11 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
     },
     {
       company: "Accenture",
+
+      href: "#",
+
       href: "https://www.accenture.com/",
+
       badges: ["Data Engineering", "Analytics"],
       location: "India (Remote + Onsite)",
       title: "Software Engineer – Data Systems",
