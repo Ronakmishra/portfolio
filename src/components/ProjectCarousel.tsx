@@ -90,18 +90,19 @@ interface ProjectProps {
   href?: string;
   description: string;
   dates: string;
-  technologies: string[];
+  technologies: readonly string[];
   image?: string;
   video?: string;
-  links?: {
-    icon: React.ReactNode;
-    type: string;
-    href: string;
-  }[];
+  links?:
+    | readonly {
+        icon: React.ReactNode;
+        type: string;
+        href: string;
+      }[];
 }
 
 interface CarouselProps {
-  projects: ProjectProps[];
+  projects: readonly ProjectProps[];
 }
 
 export default function ProjectCarousel({ projects }: CarouselProps) {

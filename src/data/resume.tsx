@@ -119,7 +119,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
   work: [
     {
       company: "Metco Scientific",
-      // href: "https://www.metcoscientific.com/",
+      href: "https://www.metcoscientific.com/",
       badges: ["Data Analytics", "ML Models", "Gen AI"],
       location: "Mumbai, India",
       title: "Data Analyst – Medical & Scientific Ops",
@@ -131,7 +131,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
     },
     {
       company: "Accenture",
-      // href: "https://www.accenture.com/",
+      href: "https://www.accenture.com/",
       badges: ["Data Engineering", "Analytics"],
       location: "India (Remote + Onsite)",
       title: "Software Engineer – Data Systems",
@@ -194,6 +194,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
   education: [
     {
       school: "Northeastern University",
+      href: "https://www.northeastern.edu/",
       degree: "Master’s in Information Systems",
       logoUrl: "/neu.png",
       start: "Sep 2023",
@@ -201,6 +202,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
     },
     {
       school: "Chandigarh Engineering College",
+      href: "https://www.cgc.edu.in/",
       degree: "B.Tech in Electronics and Communication",
       logoUrl: "/cgc.png",
       start: "Jun 2016",
