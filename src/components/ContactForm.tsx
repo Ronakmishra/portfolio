@@ -48,7 +48,7 @@ export default function ContactForm() {
           className="w-full max-w-3xl rounded-lg border p-6 shadow-lg bg-background"
         >
           <form
-            action={process.env.NEXT_PUBLIC_FORMSPREE_URL}
+            action="/api/contact"
             method="POST"
             className="space-y-4"
           >
