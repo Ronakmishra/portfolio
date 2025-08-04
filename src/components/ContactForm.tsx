@@ -4,8 +4,24 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export default function ContactForm() {
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (res.ok) {
+      router.push("/thanks");
+    }
+  };
+
   return (
     // <section className="w-full py-12 flex justify-center items-center">
     //   <motion.div
@@ -47,11 +63,7 @@ export default function ContactForm() {
           transition={{ duration: 0.6 }}
           className="w-full max-w-3xl rounded-lg border p-6 shadow-lg bg-background"
         >
-          <form
-            action="/api/contact"
-            method="POST"
-            className="space-y-4"
-          >
+          <form onSubmit={handleSubmit} className="space-y-4">
             <Input type="text" name="name" placeholder="Name" required />
             <Input type="email" name="email" placeholder="Email" required />
             <Input
