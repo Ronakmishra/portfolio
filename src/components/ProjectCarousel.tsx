@@ -120,18 +120,26 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
 
   const next = useCallback(() => {
     triggerFade();
+    const savedY = window.scrollY;
     setIndex((prev) =>
       prev + itemsPerPage >= projects.length ? 0 : prev + itemsPerPage
     );
+    requestAnimationFrame(() => {
+      window.scrollTo(0, savedY);
+    });
   }, [projects.length, triggerFade]);
 
   const prev = () => {
     triggerFade();
+    const savedY = window.scrollY;
     setIndex((prev) =>
       prev - itemsPerPage < 0
         ? Math.max(projects.length - itemsPerPage, 0)
         : prev - itemsPerPage
     );
+    requestAnimationFrame(() => {
+      window.scrollTo(0, savedY);
+    });
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
