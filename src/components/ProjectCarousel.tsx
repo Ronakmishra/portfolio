@@ -127,6 +127,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
     setTimeout(() => setFade(false), 200); // Fade out briefly
   }, [isMobile]);
 
+
   const next = useCallback(() => {
     triggerFade();
     const isMobileView = window.matchMedia("(max-width: 767px)").matches;
@@ -187,6 +188,68 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
       setTransitionEnabled(false);
       setMobilePage(pageCount);
       setTimeout(() => setTransitionEnabled(true), 0);
+=======
+  const next = useCallback(
+    (preserveScroll: boolean = true) => {
+      triggerFade();
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      let prevTop = 0;
+      let savedY = 0;
+      if (preserveScroll) {
+        prevTop = isMobile
+          ? (carouselRef.current?.getBoundingClientRect().top ?? 0) +
+            window.scrollY
+          : 0;
+        savedY = isMobile ? 0 : window.scrollY;
+      }
+      setIndex((prev) =>
+        prev + itemsPerPage >= projects.length ? 0 : prev + itemsPerPage
+      );
+      if (preserveScroll) {
+        requestAnimationFrame(() => {
+          if (isMobile) {
+            const newTop =
+              (carouselRef.current?.getBoundingClientRect().top ?? 0) +
+              window.scrollY;
+            window.scrollBy(0, newTop - prevTop);
+          } else {
+            window.scrollTo(0, savedY);
+          }
+        });
+      }
+    },
+    [projects.length, triggerFade]
+  );
+
+  const prev = (preserveScroll: boolean = true) => {
+    triggerFade();
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    let prevTop = 0;
+    let savedY = 0;
+    if (preserveScroll) {
+      prevTop = isMobile
+        ? (carouselRef.current?.getBoundingClientRect().top ?? 0) +
+          window.scrollY
+        : 0;
+      savedY = isMobile ? 0 : window.scrollY;
+    }
+    setIndex((prev) =>
+      prev - itemsPerPage < 0
+        ? Math.max(projects.length - itemsPerPage, 0)
+        : prev - itemsPerPage
+    );
+    if (preserveScroll) {
+      requestAnimationFrame(() => {
+        if (isMobile) {
+          const newTop =
+            (carouselRef.current?.getBoundingClientRect().top ?? 0) +
+            window.scrollY;
+          window.scrollBy(0, newTop - prevTop);
+        } else {
+          window.scrollTo(0, savedY);
+        }
+      });
+
     }
   };
 
@@ -233,7 +296,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
   useEffect(() => {
     if (isInView && !isHovered) {
       intervalRef.current = setInterval(() => {
-        next();
+        next(false);
       }, 5000);
     }
 
@@ -278,7 +341,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
           <Button
             variant="outline"
             size="icon"
-            onClick={prev}
+            onClick={() => prev()}
             disabled={projects.length <= itemsPerPage}
           >
             <ChevronLeft className="w-4 h-4" />
@@ -286,7 +349,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
           <Button
             variant="outline"
             size="icon"
-            onClick={next}
+            onClick={() => next()}
             disabled={projects.length <= itemsPerPage}
           >
             <ChevronRight className="w-4 h-4" />
