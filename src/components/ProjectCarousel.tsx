@@ -188,68 +188,6 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
       setTransitionEnabled(false);
       setMobilePage(pageCount);
       setTimeout(() => setTransitionEnabled(true), 0);
-=======
-  const next = useCallback(
-    (preserveScroll: boolean = true) => {
-      triggerFade();
-      const isMobile = window.matchMedia("(max-width: 767px)").matches;
-      let prevTop = 0;
-      let savedY = 0;
-      if (preserveScroll) {
-        prevTop = isMobile
-          ? (carouselRef.current?.getBoundingClientRect().top ?? 0) +
-            window.scrollY
-          : 0;
-        savedY = isMobile ? 0 : window.scrollY;
-      }
-      setIndex((prev) =>
-        prev + itemsPerPage >= projects.length ? 0 : prev + itemsPerPage
-      );
-      if (preserveScroll) {
-        requestAnimationFrame(() => {
-          if (isMobile) {
-            const newTop =
-              (carouselRef.current?.getBoundingClientRect().top ?? 0) +
-              window.scrollY;
-            window.scrollBy(0, newTop - prevTop);
-          } else {
-            window.scrollTo(0, savedY);
-          }
-        });
-      }
-    },
-    [projects.length, triggerFade]
-  );
-
-  const prev = (preserveScroll: boolean = true) => {
-    triggerFade();
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    let prevTop = 0;
-    let savedY = 0;
-    if (preserveScroll) {
-      prevTop = isMobile
-        ? (carouselRef.current?.getBoundingClientRect().top ?? 0) +
-          window.scrollY
-        : 0;
-      savedY = isMobile ? 0 : window.scrollY;
-    }
-    setIndex((prev) =>
-      prev - itemsPerPage < 0
-        ? Math.max(projects.length - itemsPerPage, 0)
-        : prev - itemsPerPage
-    );
-    if (preserveScroll) {
-      requestAnimationFrame(() => {
-        if (isMobile) {
-          const newTop =
-            (carouselRef.current?.getBoundingClientRect().top ?? 0) +
-            window.scrollY;
-          window.scrollBy(0, newTop - prevTop);
-        } else {
-          window.scrollTo(0, savedY);
-        }
-      });
-
     }
   };
 
