@@ -107,7 +107,8 @@ interface CarouselProps {
 export default function ProjectCarousel({ projects }: CarouselProps) {
   const [index, setIndex] = useState(0);
   const itemsPerPage = 4;
-  const extended = [...projects, ...projects.slice(0, itemsPerPage)];
+  const pageCount = Math.ceil(projects.length / itemsPerPage);
+  const totalItems = pageCount * itemsPerPage;
   const transitionDuration = 500;
   const [disableTransition, setDisableTransition] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -130,7 +131,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
       }
       const newIndex = index + itemsPerPage;
       setIndex(newIndex);
-      if (newIndex >= projects.length) {
+      if (newIndex >= totalItems) {
         setTimeout(() => {
           setDisableTransition(true);
           setIndex(0);
@@ -152,7 +153,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
         });
       }
     },
-    [index, projects.length]
+    [index, totalItems]
   );
 
   const prev = (preserveScroll: boolean = true) => {
@@ -168,10 +169,10 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
     }
     if (index === 0) {
       setDisableTransition(true);
-      setIndex(projects.length);
+      setIndex(totalItems);
       requestAnimationFrame(() => {
         setDisableTransition(false);
-        setIndex(Math.max(projects.length - itemsPerPage, 0));
+        setIndex(Math.max((pageCount - 1) * itemsPerPage, 0));
         if (preserveScroll) {
           requestAnimationFrame(() => {
             if (isMobile) {
@@ -274,7 +275,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
             variant="outline"
             size="icon"
             onClick={() => prev()}
-            disabled={projects.length <= itemsPerPage}
+            disabled={pageCount <= 1}
           >
             <ChevronLeft className="w-4 h-4" />
           </Button>
@@ -282,7 +283,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
             variant="outline"
             size="icon"
             onClick={() => next()}
-            disabled={projects.length <= itemsPerPage}
+            disabled={pageCount <= 1}
           >
             <ChevronRight className="w-4 h-4" />
           </Button>
@@ -296,19 +297,23 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
             transform: `translateX(-${(index / itemsPerPage) * 100}%)`,
           }}
         >
-          {Array.from(
-            { length: Math.ceil(extended.length / itemsPerPage) },
-            (_, pageIndex) => (
+          {Array.from({ length: pageCount + 1 }, (_, pageIndex) => {
+            const start = pageIndex * itemsPerPage;
+            const slice =
+              pageIndex === pageCount
+                ? projects.slice(0, itemsPerPage)
+                : projects.slice(start, start + itemsPerPage);
+            const filled: (ProjectProps | null)[] = [...slice];
+            while (filled.length < itemsPerPage) {
+              filled.push(null);
+            }
+            return (
               <div
                 key={pageIndex}
                 className="min-w-full grid grid-cols-1 md:grid-cols-2 gap-4"
               >
-                {extended
-                  .slice(
-                    pageIndex * itemsPerPage,
-                    pageIndex * itemsPerPage + itemsPerPage
-                  )
-                  .map((project, idx) => (
+                {filled.map((project, idx) =>
+                  project ? (
                     <ProjectCard
                       key={idx}
                       title={project.title}
@@ -320,10 +325,13 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
                       video={project.video}
                       links={project.links}
                     />
-                  ))}
+                  ) : (
+                    <div key={idx} className="hidden md:block" />
+                  )
+                )}
               </div>
-            )
-          )}
+            );
+          })}
         </div>
       </div>
     </section>
