@@ -32,6 +32,8 @@ function MobileDarkMode() {
 
       if (isMobile || isSmallViewport) {
         setTheme("dark");
+      } else {
+        setTheme("light");
       }
     }
   }, [setTheme]);
