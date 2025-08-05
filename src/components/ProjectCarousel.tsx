@@ -111,14 +111,17 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [fade, setFade] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartX = useRef<number | null>(null);
   const carouselRef = useRef<HTMLElement | null>(null);
 
   const triggerFade = useCallback(() => {
+    // Skip fade animation on mobile where slides are used
+    if (isMobile) return;
     setFade(true);
     setTimeout(() => setFade(false), 200); // Fade out briefly
-  }, []);
+  }, [isMobile]);
 
   const next = useCallback(() => {
     triggerFade();
@@ -221,6 +224,14 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
     };
   }, [isInView, isHovered, next]);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+    updateIsMobile();
+    mediaQuery.addEventListener("change", updateIsMobile);
+    return () => mediaQuery.removeEventListener("change", updateIsMobile);
+  }, []);
+
   return (
     <section
       ref={carouselRef}
@@ -252,27 +263,67 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
         </div>
       </div>
 
-      {/* 💫 Fade transition wrapper */}
-      <div
-        className={clsx(
-          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 transition-opacity duration-500 ease-in-out",
-          fade ? "opacity-0" : "opacity-100"
-        )}
-      >
-        {projects.slice(index, index + itemsPerPage).map((project, idx) => (
-          <ProjectCard
-            key={idx}
-            title={project.title}
-            href={project.href}
-            description={project.description}
-            dates={project.dates}
-            tags={project.technologies}
-            image={project.image}
-            video={project.video}
-            links={project.links}
-          />
-        ))}
-      </div>
+      {isMobile ? (
+        <div className="overflow-hidden">
+          <div
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(-${(index / itemsPerPage) * 100}%)`,
+            }}
+          >
+            {Array.from(
+              { length: Math.ceil(projects.length / itemsPerPage) },
+              (_, pageIndex) => (
+                <div
+                  key={pageIndex}
+                  className="min-w-full grid grid-cols-1 gap-4"
+                >
+                  {projects
+                    .slice(
+                      pageIndex * itemsPerPage,
+                      pageIndex * itemsPerPage + itemsPerPage
+                    )
+                    .map((project, idx) => (
+                      <ProjectCard
+                        key={idx}
+                        title={project.title}
+                        href={project.href}
+                        description={project.description}
+                        dates={project.dates}
+                        tags={project.technologies}
+                        image={project.image}
+                        video={project.video}
+                        links={project.links}
+                      />
+                    ))}
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      ) : (
+        // 💫 Fade transition wrapper for wider screens
+        <div
+          className={clsx(
+            "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 transition-opacity duration-500 ease-in-out",
+            fade ? "opacity-0" : "opacity-100"
+          )}
+        >
+          {projects.slice(index, index + itemsPerPage).map((project, idx) => (
+            <ProjectCard
+              key={idx}
+              title={project.title}
+              href={project.href}
+              description={project.description}
+              dates={project.dates}
+              tags={project.technologies}
+              image={project.image}
+              video={project.video}
+              links={project.links}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
