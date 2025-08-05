@@ -250,155 +250,278 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
   work,
   education,
 
+  // project section below
+
   projects: [
     {
-      title: "Chat Collect",
-      href: "https://chatcollect.com",
-      dates: "Jan 2024 - Feb 2024",
+      title: "Data_Projection",
+      href: "", // Add a live demo link if you have one
+      // dates: "Apr 2024 - May 2024",
       active: true,
       description:
-        "With the release of the [OpenAI GPT Store](https://openai.com/blog/introducing-the-gpt-store), I decided to build a SaaS which allows users to collect email addresses from their GPT users. This is a great way to build an audience and monetize your GPT API usage.",
+        "Built an event-driven data pipeline using AWS to capture changes in DynamoDB and stream them in real-time using EventBridge Pipes, Kinesis, and Firehose. Data was enriched and stored in S3, then cataloged with Glue for downstream analytics via Athena.",
       technologies: [
-        "Next.js",
-        "Typescript",
-        "PostgreSQL",
-        "Prisma",
-        "TailwindCSS",
-        "Stripe",
-        "Shadcn UI",
-        "Magic UI",
+        "DynamoDB",
+        "EventBridge Pipes",
+        "Kinesis Streams",
+        "Lambda",
+        "Firehose",
+        "S3",
+        "Glue",
+        "Athena",
       ],
       links: [
-        {
-          type: "Website",
-          href: "https://chatcollect.com",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "https://pub-83c5db439b40468498f97946200806f7.r2.dev/chat-collect.mp4",
-    },
-    {
-      title: "Magic UI",
-      href: "https://magicui.design",
-      dates: "June 2023 - Present",
-      active: true,
-      description: "Designed, developed and sold animated UI components for developers.",
-      technologies: [
-        "Next.js",
-        "Typescript",
-        "PostgreSQL",
-        "Prisma",
-        "TailwindCSS",
-        "Stripe",
-        "Shadcn UI",
-        "Magic UI",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://magicui.design",
-          icon: <Icons.globe className="size-3" />,
-        },
         {
           type: "Source",
-          href: "https://github.com/magicuidesign/magicui",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "https://cdn.magicui.design/bento-grid.mp4",
-    },
-    {
-      title: "llm.report",
-      href: "https://llm.report",
-      dates: "April 2023 - September 2023",
-      active: true,
-      description:
-        "Developed an open-source logging and analytics platform for OpenAI: Log your ChatGPT API requests, analyze costs, and improve your prompts.",
-      technologies: [
-        "Next.js",
-        "Typescript",
-        "PostgreSQL",
-        "Prisma",
-        "TailwindCSS",
-        "Shadcn UI",
-        "Magic UI",
-        "Stripe",
-        "Cloudflare Workers",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://llm.report",
+          href: "https://github.com/Ronakmishra/Data_Projection",
           icon: <Icons.globe className="size-3" />,
         },
+      ],
+      image:
+        "https://cdn.jsdelivr.net/gh/Ronakmishra/project_assets/Data_Projection/data_projection.png",
+      video: "",
+    },
+
+    {
+      title: "Event-Driven Dataflow",
+      href: "", // Add live demo link if applicable
+      // dates: "May 2024 - Jun 2024",
+      active: true,
+      description:
+        "Built a real-time event-driven data pipeline using SQS, EventBridge Pipes, and AWS Lambda to ingest, enrich, and transform Airbnb booking stream data. Final data is written to S3 and made queryable through CSV exports.",
+      technologies: [
+        "SQS",
+        "EventBridge Pipes",
+        "Lambda",
+        "Python",
+        "S3",
+        "CI/CD",
+        "CodeBuild",
+      ],
+      links: [
         {
           type: "Source",
-          href: "https://github.com/dillionverma/llm.report",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "https://cdn.llm.report/openai-demo.mp4",
-    },
-    {
-      title: "Automatic Chat",
-      href: "https://automatic.chat",
-      dates: "April 2023 - March 2024",
-      active: true,
-      description:
-        "Developed an AI Customer Support Chatbot which automatically responds to customer support tickets using the latest GPT models.",
-      technologies: [
-        "Next.js",
-        "Typescript",
-        "PostgreSQL",
-        "Prisma",
-        "TailwindCSS",
-        "Shadcn UI",
-        "Magic UI",
-        "Stripe",
-        "Cloudflare Workers",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://automatic.chat",
+          href: "https://github.com/Ronakmishra/event-driven-dataflow",
           icon: <Icons.globe className="size-3" />,
         },
       ],
-      image: "",
-      video: "https://pub-83c5db439b40468498f97946200806f7.r2.dev/automatic-chat.mp4",
+      image:
+        "https://cdn.jsdelivr.net/gh/Ronakmishra/event-driven-dataflow/architecture-diagram.gif",
+      video: "",
     },
     {
-      title: "Automatic Chat",
-      href: "https://automatic.chat",
-      dates: "April 2023 - March 2024",
+      title: "Financial Document Summarization with RAG",
+      href: "", // Add live demo or Hugging Face Space link if deployed
+      // dates: "2025",
       active: true,
       description:
-        "Developed an AI Customer Support Chatbot which automatically responds to customer support tickets using the latest GPT models.",
+        "Built a RAG-based chatbot that summarizes financial documents (10-K, 10-Q) by combining retrieval techniques with LLMs. Integrated multiple models (GPT-3.5, LLaMA 2, Gemma 1.1) and evaluated outputs on metrics like faithfulness, context recall, and answer relevancy. Designed prompt templates, UI components, and comparison experiments to reduce hallucinations and improve factual consistency.",
       technologies: [
-        "Next.js",
-        "Typescript",
-        "PostgreSQL",
-        "Prisma",
-        "TailwindCSS",
-        "Shadcn UI",
-        "Magic UI",
-        "Stripe",
-        "Cloudflare Workers",
+        "Python",
+        "LangChain",
+        "LLMs (GPT-3.5, LLaMA 2, Gemma 1.1)",
+        "RAG",
+        "Streamlit",
+        "ChromaDB",
+        "Prompt Engineering",
+        "PDF Parsing",
       ],
       links: [
         {
-          type: "Website",
-          href: "https://automatic.chat",
-          icon: <Icons.youtube className="size-3" />,
+          type: "Source",
+          href: "https://github.com/Ronakmishra/Financial_Document_Summarization_through_RAG",
+          icon: <Icons.globe className="size-3" />,
         },
       ],
-      image: "",
-      video: "https://pub-83c5db439b40468498f97946200806f7.r2.dev/automatic-chat.mp4",
+      image:
+        "https://cdn.jsdelivr.net/gh/Ronakmishra/Financial_Document_Summarization_through_RAG/assets/rag_architecture.png",
+      video: "",
+    },
+
+    {
+      title: "Churn Prediction",
+      href: "", // Add a live demo link if available
+      // dates: "2024",
+      active: true,
+      description:
+        "Developed a machine learning pipeline to predict customer churn using Random Forest and XGBoost models. Cleaned and engineered features from historical data, evaluated performance using AUC and F1 scores, and built an interactive dashboard to visualize churn risk across segments.",
+      technologies: [
+        "Python",
+        "pandas",
+        "scikit-learn",
+        "XGBoost",
+        "Random Forest",
+        "Power BI",
+        "EDA",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Ronakmishra/Churn-Prediction",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "https://cdn.jsdelivr.net/gh/Ronakmishra/Churn-Prediction/dashboard/1.png",
+      video: "",
+    },
+    {
+      title: "Doordash Lambda Pipeline",
+      href: "", // Add live demo link if applicable
+      // dates: "Jul 2025",
+      active: true,
+      description:
+        "Created a serverless data pipeline triggered by file uploads in S3. A Lambda function filters delivery events and writes clean JSON to a target S3 bucket. SNS sends notifications on success, and the entire pipeline is deployed via CI/CD using CodeBuild.",
+      technologies: ["AWS Lambda", "S3", "SNS", "CI/CD", "CodeBuild", "Python", "pandas"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Ronakmishra/doordash-lambda-pipeline",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image:
+        "https://cdn.jsdelivr.net/gh/Ronakmishra/doordash-lambda-pipeline/Screen%20Recording%202025-07-20%20at%203.08.18%E2%80%AFPM.gif",
+      video: "",
+    },
+
+    {
+      title: "EdTech DataFlow",
+      href: "", // Add live demo link if available
+      // dates: "2024",
+      active: true,
+      description:
+        "A modern ELT pipeline built for an EdTech platform, showcasing transformation and orchestration best practices using Snowflake, dbt Cloud, dbt Core, and Dagster. The project includes modular, documented data modeling, automated workflows, and lineage tracking—supporting CI/CD and both managed and open-source orchestration strategies.",
+      technologies: [
+        "Snowflake",
+        "dbt Cloud",
+        "dbt Core",
+        "Dagster",
+        "Python",
+        "SQL",
+        "CI/CD",
+        "Cron Scheduling",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Ronakmishra/EdTech_DataFlow",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "https://cdn.jsdelivr.net/gh/Ronakmishra/EdTech_DataFlow/lineage_graph.png",
+      video: "",
+    },
+
+    {
+      title: "Delhivery Analytics Dashboard",
+      href: "", // Add Tableau Public or demo link if available
+      // dates: "2024",
+      active: true,
+      description:
+        "Developed a real-time analytics dashboard for Delhivery's supply chain operations using Snowflake and Tableau. Migrated raw CSVs into a cloud data warehouse, modeled the data using a star schema, and built a UI that visually mirrors Delhivery's official website. Dashboard includes revenue, order flow, defect rates, and shipping cost analytics—fully filterable and exportable.",
+      technologies: ["Snowflake", "Tableau", "Microsoft Excel", "Star Schema"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Ronakmishra/delhivery-insights",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "https://cdn.jsdelivr.net/gh/Ronakmishra/delhivery-insights/gif.gif",
+      video: "",
+    },
+    {
+      title: "Sales Analytics & Strategic Planning",
+      href: "", // Add Power BI public link if you decide to publish it
+      // dates: "2024",
+      active: true,
+      description:
+        "Designed an end-to-end sales analytics solution using Power BI and Microsoft SQL Server based on a fictional enterprise case. Migrated from static Excel reports to dynamic dashboards built with DirectQuery, enabling real-time tracking of sales KPIs, product performance, and customer insights. The project also modeled a 2021 sales budget and aligned all outputs to stakeholder user stories.",
+      technologies: [
+        "Microsoft SQL Server",
+        "T-SQL",
+        "Power BI",
+        "DirectQuery",
+        "Excel/CSV",
+        "Data Modeling",
+        "Star Schema",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Ronakmishra/Sales-Analytics-Strategic-Planning",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image:
+        "https://cdn.jsdelivr.net/gh/Ronakmishra/Sales-Analytics-Strategic-Planning/dashboards/sales_dashboard.png",
+      video: "",
+    },
+    {
+      title: "GAIA Model Evaluation Tool",
+      href: "", // Add your Streamlit Cloud deployment link here when ready
+      // dates: "2025",
+      active: true,
+      description:
+        "Built a Streamlit-based evaluation tool to benchmark OpenAI models using the GAIA dataset. The app enables users to select test cases, query models, compare results with ground-truth answers, collect feedback, and re-evaluate modified steps. Features include persistent feedback storage, interactive charts for visualizing outcomes, and secure API key handling via environment variables.",
+      technologies: ["Streamlit", "OpenAI API", "Python", "SQLite"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Ronakmishra/BigDataChronicles",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "https://cdn.jsdelivr.net/gh/Ronakmishra/BigDataChronicles/req-1.png",
+      video: "",
+    },
+    {
+      title: "Raw to Ready: dbt + Snowflake Modeling",
+      href: "", // Add dbt docs link if public, or a blog/demo if you publish one
+      // dates: "2025",
+      active: true,
+      description:
+        "Designed a modular dbt pipeline in Snowflake to transform raw e-commerce data into analytics-ready data marts. Implemented a layered architecture (Raw → Staging → Marts), with separate Snowflake databases for each layer. Used source blocks, CTEs, and dbt configs to build scalable models and document the entire data flow using DAGs and lineage graphs.",
+      technologies: ["dbt", "Snowflake", "SQL", "GitHub"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Ronakmishra/from-raw-to-ready",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "https://cdn.jsdelivr.net/gh/Ronakmishra/from-raw-to-ready/DAG/dag1.png",
+      video: "",
+    },
+    {
+      title: "Amazon Sales Analytics",
+      href: "", // Add Power BI public link if you publish it
+      // dates: "2025",
+      active: true,
+      description:
+        "Built an interactive sales and inventory analytics dashboard in Power BI using Amazon sales data. Applied Power Query for data cleaning, DAX for KPI logic, and designed multi-page dashboards covering orders, products, returns, and regional sales. Includes dynamic filters, custom tooltips, and drill-downs to support data-driven decision-making.",
+      technologies: [
+        "Power BI",
+        "Power Query",
+        "DAX",
+        "Data Modeling",
+        "Dashboard Design",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Ronakmishra/Amazon_analytics",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image:
+        "https://cdn.jsdelivr.net/gh/Ronakmishra/Amazon_analytics/Dashboard/orders_dashboard.png",
+      video: "",
     },
   ],
+
+  // extra activites below
+
   hackathons: [
     // {
     //   title: "Hack Western 5",
