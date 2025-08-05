@@ -107,33 +107,10 @@ interface CarouselProps {
 
 export default function ProjectCarousel({ projects }: CarouselProps) {
   const [index, setIndex] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const itemsPerPage = 4;
   const [isHovered, setIsHovered] = useState(false);
   const [fade, setFade] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Determine items per page based on viewport width
-  useEffect(() => {
-    const updateItemsPerPage = () => {
-      const width = window.innerWidth;
-      if (width < 768) {
-        setItemsPerPage(1);
-      } else if (width < 1024) {
-        setItemsPerPage(2);
-      } else {
-        setItemsPerPage(4);
-      }
-    };
-
-    updateItemsPerPage();
-    window.addEventListener("resize", updateItemsPerPage);
-    return () => window.removeEventListener("resize", updateItemsPerPage);
-  }, []);
-
-  // Ensure current index stays in bounds when itemsPerPage changes
-  useEffect(() => {
-    setIndex((prev) => Math.min(prev, Math.max(projects.length - itemsPerPage, 0)));
-  }, [itemsPerPage, projects.length]);
 
   const triggerFade = useCallback(() => {
     setFade(true);
@@ -145,7 +122,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
     setIndex((prev) =>
       prev + itemsPerPage >= projects.length ? 0 : prev + itemsPerPage
     );
-  }, [itemsPerPage, projects.length, triggerFade]);
+  }, [projects.length, triggerFade]);
 
   const prev = () => {
     triggerFade();
