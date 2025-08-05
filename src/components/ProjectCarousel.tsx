@@ -110,8 +110,10 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
   const itemsPerPage = 4;
   const [isHovered, setIsHovered] = useState(false);
   const [fade, setFade] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartX = useRef<number | null>(null);
+  const carouselRef = useRef<HTMLElement | null>(null);
 
   const triggerFade = useCallback(() => {
     setFade(true);
@@ -159,21 +161,39 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
   };
 
   useEffect(() => {
-    const startInterval = () => {
+    const node = carouselRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsInView(entry.isIntersecting);
+    });
+
+    observer.observe(node);
+
+    return () => {
+      observer.unobserve(node);
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isInView && !isHovered) {
       intervalRef.current = setInterval(() => {
         next();
       }, 5000);
-    };
-
-    if (!isHovered) startInterval();
+    }
 
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
-  }, [isHovered, projects.length, next]);
+  }, [isInView, isHovered, next]);
 
   return (
     <section
+      ref={carouselRef}
       className="w-full py-12 max-w-[800px] mx-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
