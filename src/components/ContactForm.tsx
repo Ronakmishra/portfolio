@@ -52,9 +52,9 @@ export default function ContactForm() {
     //   </motion.div>
     // </section>
     <section className="w-full py-12 flex justify-center items-center">
-      <div className="relative w-full flex justify-center">
+      <div className="relative w-full flex justify-center overflow-hidden">
         {/* 🔮 Aura Glow */}
-        <div className="absolute top-1/2 left-1/2 -z-10 h-[300px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-fuchsia-500/30 blur-3xl opacity-60" />
+        <div className="absolute top-1/2 left-1/2 -z-10 h-[300px] w-full max-w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-fuchsia-500/30 blur-3xl opacity-60" />
 
         {/* 📩 Contact Form with animation */}
         <motion.div
