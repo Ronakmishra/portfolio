@@ -107,10 +107,33 @@ interface CarouselProps {
 
 export default function ProjectCarousel({ projects }: CarouselProps) {
   const [index, setIndex] = useState(0);
-  const itemsPerPage = 4;
+  const [itemsPerPage, setItemsPerPage] = useState(4);
   const [isHovered, setIsHovered] = useState(false);
   const [fade, setFade] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Determine items per page based on viewport width
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setItemsPerPage(1);
+      } else if (width < 1024) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(4);
+      }
+    };
+
+    updateItemsPerPage();
+    window.addEventListener("resize", updateItemsPerPage);
+    return () => window.removeEventListener("resize", updateItemsPerPage);
+  }, []);
+
+  // Ensure current index stays in bounds when itemsPerPage changes
+  useEffect(() => {
+    setIndex((prev) => Math.min(prev, Math.max(projects.length - itemsPerPage, 0)));
+  }, [itemsPerPage, projects.length]);
 
   const triggerFade = useCallback(() => {
     setFade(true);
@@ -178,7 +201,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
       {/* 💫 Fade transition wrapper */}
       <div
         className={clsx(
-          "grid grid-cols-1 sm:grid-cols-2 gap-4 transition-opacity duration-500 ease-in-out",
+          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 transition-opacity duration-500 ease-in-out",
           fade ? "opacity-0" : "opacity-100"
         )}
       >
