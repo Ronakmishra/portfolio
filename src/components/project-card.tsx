@@ -40,6 +40,7 @@ export function ProjectCard({
   links,
   className,
 }: Props) {
+  const sourceUrl = links?.find((link) => link.type === "Source")?.href;
   return (
     <Card
       className={
@@ -47,8 +48,10 @@ export function ProjectCard({
       }
     >
       <Link
-        href={href || "#"}
+        href={href || sourceUrl || "#"}
         className={cn("block cursor-pointer", className)}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {video && (
           <video
