@@ -274,7 +274,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/Data_Projection",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image:
@@ -302,7 +302,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/event-driven-dataflow",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image:
@@ -330,7 +330,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/Financial_Document_Summarization_through_RAG",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image:
@@ -358,7 +358,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/Churn-Prediction",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image: "https://cdn.jsdelivr.net/gh/Ronakmishra/Churn-Prediction/dashboard/1.png",
@@ -376,7 +376,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/doordash-lambda-pipeline",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image:
@@ -405,7 +405,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/EdTech_DataFlow",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image: "https://cdn.jsdelivr.net/gh/Ronakmishra/EdTech_DataFlow/lineage_graph.png",
@@ -424,7 +424,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/delhivery-insights",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image: "https://cdn.jsdelivr.net/gh/Ronakmishra/delhivery-insights/gif.gif",
@@ -450,7 +450,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/Sales-Analytics-Strategic-Planning",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image:
@@ -469,7 +469,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/BigDataChronicles",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image: "https://cdn.jsdelivr.net/gh/Ronakmishra/BigDataChronicles/req-1.png",
@@ -487,7 +487,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/from-raw-to-ready",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image: "https://cdn.jsdelivr.net/gh/Ronakmishra/from-raw-to-ready/DAG/dag1.png",
@@ -511,7 +511,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/Amazon_analytics",
-          icon: <Icons.globe className="size-3" />,
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image:
