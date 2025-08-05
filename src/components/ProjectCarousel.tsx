@@ -122,25 +122,47 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
 
   const next = useCallback(() => {
     triggerFade();
-    const savedY = window.scrollY;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const prevTop = isMobile
+      ? (carouselRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY
+      : 0;
+    const savedY = isMobile ? 0 : window.scrollY;
     setIndex((prev) =>
       prev + itemsPerPage >= projects.length ? 0 : prev + itemsPerPage
     );
     requestAnimationFrame(() => {
-      window.scrollTo(0, savedY);
+      if (isMobile) {
+        const newTop =
+          (carouselRef.current?.getBoundingClientRect().top ?? 0) +
+          window.scrollY;
+        window.scrollBy(0, newTop - prevTop);
+      } else {
+        window.scrollTo(0, savedY);
+      }
     });
   }, [projects.length, triggerFade]);
 
   const prev = () => {
     triggerFade();
-    const savedY = window.scrollY;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const prevTop = isMobile
+      ? (carouselRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY
+      : 0;
+    const savedY = isMobile ? 0 : window.scrollY;
     setIndex((prev) =>
       prev - itemsPerPage < 0
         ? Math.max(projects.length - itemsPerPage, 0)
         : prev - itemsPerPage
     );
     requestAnimationFrame(() => {
-      window.scrollTo(0, savedY);
+      if (isMobile) {
+        const newTop =
+          (carouselRef.current?.getBoundingClientRect().top ?? 0) +
+          window.scrollY;
+        window.scrollBy(0, newTop - prevTop);
+      } else {
+        window.scrollTo(0, savedY);
+      }
     });
   };
 
