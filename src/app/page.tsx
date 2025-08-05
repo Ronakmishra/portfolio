@@ -103,11 +103,11 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="about" className="relative w-full">
+        <section id="about" className="relative w-full overflow-hidden">
           {/* 🌈 Softer Glow Background */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none">
-            <div className="h-[180px] w-[800px] rounded-[48px] bg-gradient-to-br from-indigo-300/15 via-pink-300/10 to-purple-300/15 blur-[80px] opacity-40" />
-          </div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none">
+              <div className="h-[180px] w-full max-w-[800px] rounded-[48px] bg-gradient-to-br from-indigo-300/15 via-pink-300/10 to-purple-300/15 blur-[80px] opacity-40" />
+            </div>
 
           {/* Section Content */}
           <div className="space-y-6">
