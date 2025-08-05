@@ -94,7 +94,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 export default function BackgroundNetwork() {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -103,20 +103,22 @@ export default function BackgroundNetwork() {
 
   // Load particles when theme changes
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted || !resolvedTheme) return;
 
     const particlesJS = (window as any).particlesJS;
     const configFile =
-      theme === "dark" ? "/particles-dark.json" : "/particles-light.json";
+      resolvedTheme === "dark"
+        ? "/particles-dark.json"
+        : "/particles-light.json";
 
     if (particlesJS) {
       particlesJS.load("particles-js", configFile, () => {
         console.log(`🟢 Loaded ${configFile}`);
       });
     }
-  }, [theme, mounted]);
+  }, [resolvedTheme, mounted]);
 
-  if (!mounted) return null;
+  if (!mounted || !resolvedTheme) return null;
 
   return (
     <div className="fixed top-0 left-0 w-full h-[30vh] md:inset-0 md:h-full -z-10">
@@ -131,7 +133,7 @@ export default function BackgroundNetwork() {
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
           background:
-            theme === "dark"
+            resolvedTheme === "dark"
               ? "radial-gradient(circle at center, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0) 60%)"
               : "radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0) 60%)",
         }}
