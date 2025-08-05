@@ -111,6 +111,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [fade, setFade] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const triggerFade = useCallback(() => {
     setFade(true);
@@ -133,6 +134,30 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
     );
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0]?.clientX ?? null;
+    setIsHovered(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const startX = touchStartX.current;
+    const endX = e.changedTouches[0]?.clientX ?? null;
+
+    if (startX !== null && endX !== null) {
+      const diff = startX - endX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          next();
+        } else {
+          prev();
+        }
+      }
+    }
+
+    touchStartX.current = null;
+    setIsHovered(false);
+  };
+
   useEffect(() => {
     const startInterval = () => {
       intervalRef.current = setInterval(() => {
@@ -152,6 +177,8 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
       className="w-full py-12 max-w-[800px] mx-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold">Projects</h2>
