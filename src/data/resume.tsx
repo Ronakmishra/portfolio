@@ -418,7 +418,7 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
       dates: "",
       active: true,
       description:
-        "Developed a real-time analytics dashboard for Delhivery's supply chain operations using Snowflake and Tableau. Migrated raw CSVs into a cloud data warehouse, modeled the data using a star schema, and built a UI that visually mirrors Delhivery's official website. Dashboard includes revenue, order flow, defect rates, and shipping cost analytics—fully filterable and exportable.",
+        "Developed a real-time analytics dashboard for Delhivery's supply chain operations using Snowflake and Tableau. Migrated raw CSVs into a cloud data warehouse, modeled the data using a star schema, and built a UI that visually mirrors Delhivery's official website. Dashboard includes revenue, order flow, defect rates, and shipping cost analytics - fully filterable and exportable.",
       technologies: ["Snowflake", "Tableau", "Microsoft Excel", "Star Schema"],
       links: [
         {
