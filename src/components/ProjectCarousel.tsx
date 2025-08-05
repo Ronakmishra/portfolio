@@ -107,6 +107,9 @@ interface CarouselProps {
 export default function ProjectCarousel({ projects }: CarouselProps) {
   const [index, setIndex] = useState(0);
   const itemsPerPage = 4;
+  const extended = [...projects, ...projects.slice(0, itemsPerPage)];
+  const transitionDuration = 500;
+  const [disableTransition, setDisableTransition] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -125,9 +128,17 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
           : 0;
         savedY = isMobile ? 0 : window.scrollY;
       }
-      setIndex((prev) =>
-        prev + itemsPerPage >= projects.length ? 0 : prev + itemsPerPage
-      );
+      const newIndex = index + itemsPerPage;
+      setIndex(newIndex);
+      if (newIndex >= projects.length) {
+        setTimeout(() => {
+          setDisableTransition(true);
+          setIndex(0);
+          requestAnimationFrame(() => {
+            setDisableTransition(false);
+          });
+        }, transitionDuration);
+      }
       if (preserveScroll) {
         requestAnimationFrame(() => {
           if (isMobile) {
@@ -141,7 +152,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
         });
       }
     },
-    [projects.length]
+    [index, projects.length]
   );
 
   const prev = (preserveScroll: boolean = true) => {
@@ -155,22 +166,40 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
         : 0;
       savedY = isMobile ? 0 : window.scrollY;
     }
-    setIndex((prev) =>
-      prev - itemsPerPage < 0
-        ? Math.max(projects.length - itemsPerPage, 0)
-        : prev - itemsPerPage
-    );
-    if (preserveScroll) {
+    if (index === 0) {
+      setDisableTransition(true);
+      setIndex(projects.length);
       requestAnimationFrame(() => {
-        if (isMobile) {
-          const newTop =
-            (carouselRef.current?.getBoundingClientRect().top ?? 0) +
-            window.scrollY;
-          window.scrollBy(0, newTop - prevTop);
-        } else {
-          window.scrollTo(0, savedY);
+        setDisableTransition(false);
+        setIndex(Math.max(projects.length - itemsPerPage, 0));
+        if (preserveScroll) {
+          requestAnimationFrame(() => {
+            if (isMobile) {
+              const newTop =
+                (carouselRef.current?.getBoundingClientRect().top ?? 0) +
+                window.scrollY;
+              window.scrollBy(0, newTop - prevTop);
+            } else {
+              window.scrollTo(0, savedY);
+            }
+          });
         }
       });
+    } else {
+      const newIndex = index - itemsPerPage;
+      setIndex(newIndex);
+      if (preserveScroll) {
+        requestAnimationFrame(() => {
+          if (isMobile) {
+            const newTop =
+              (carouselRef.current?.getBoundingClientRect().top ?? 0) +
+              window.scrollY;
+            window.scrollBy(0, newTop - prevTop);
+          } else {
+            window.scrollTo(0, savedY);
+          }
+        });
+      }
     }
   };
 
@@ -262,19 +291,19 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
 
       <div className="overflow-hidden">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className={`flex ${disableTransition ? "" : "transition-transform duration-500 ease-in-out"}`}
           style={{
             transform: `translateX(-${(index / itemsPerPage) * 100}%)`,
           }}
         >
           {Array.from(
-            { length: Math.ceil(projects.length / itemsPerPage) },
+            { length: Math.ceil(extended.length / itemsPerPage) },
             (_, pageIndex) => (
               <div
                 key={pageIndex}
                 className="min-w-full grid grid-cols-1 md:grid-cols-2 gap-4"
               >
-                {projects
+                {extended
                   .slice(
                     pageIndex * itemsPerPage,
                     pageIndex * itemsPerPage + itemsPerPage
