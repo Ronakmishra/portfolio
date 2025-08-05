@@ -106,8 +106,12 @@ interface CarouselProps {
 }
 
 export default function ProjectCarousel({ projects }: CarouselProps) {
-  const [index, setIndex] = useState(0);
   const itemsPerPage = 4;
+  const pageCount = Math.ceil(projects.length / itemsPerPage);
+  const [page, setPage] = useState(0);
+  const [mobilePage, setMobilePage] = useState(1);
+  const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const pageRef = useRef(0);
   const [isHovered, setIsHovered] = useState(false);
   const [fade, setFade] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -123,6 +127,68 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
     setTimeout(() => setFade(false), 200); // Fade out briefly
   }, [isMobile]);
 
+
+  const next = useCallback(() => {
+    triggerFade();
+    const isMobileView = window.matchMedia("(max-width: 767px)").matches;
+    const prevTop = isMobileView
+      ? (carouselRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY
+      : 0;
+    const savedY = isMobileView ? 0 : window.scrollY;
+    if (isMobileView) {
+      setMobilePage((prev) => prev + 1);
+      setPage((prev) => (prev + 1) % pageCount);
+    } else {
+      setPage((prev) => (prev + 1) % pageCount);
+    }
+    requestAnimationFrame(() => {
+      if (isMobileView) {
+        const newTop =
+          (carouselRef.current?.getBoundingClientRect().top ?? 0) +
+          window.scrollY;
+        window.scrollBy(0, newTop - prevTop);
+      } else {
+        window.scrollTo(0, savedY);
+      }
+    });
+  }, [pageCount, triggerFade]);
+
+  const prev = useCallback(() => {
+    triggerFade();
+    const isMobileView = window.matchMedia("(max-width: 767px)").matches;
+    const prevTop = isMobileView
+      ? (carouselRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY
+      : 0;
+    const savedY = isMobileView ? 0 : window.scrollY;
+    if (isMobileView) {
+      setMobilePage((prev) => prev - 1);
+      setPage((prev) => (prev - 1 + pageCount) % pageCount);
+    } else {
+      setPage((prev) => (prev - 1 + pageCount) % pageCount);
+    }
+    requestAnimationFrame(() => {
+      if (isMobileView) {
+        const newTop =
+          (carouselRef.current?.getBoundingClientRect().top ?? 0) +
+          window.scrollY;
+        window.scrollBy(0, newTop - prevTop);
+      } else {
+        window.scrollTo(0, savedY);
+      }
+    });
+  }, [pageCount, triggerFade]);
+
+  const handleTransitionEnd = () => {
+    if (!isMobile) return;
+    if (mobilePage === pageCount + 1) {
+      setTransitionEnabled(false);
+      setMobilePage(1);
+      setTimeout(() => setTransitionEnabled(true), 0);
+    } else if (mobilePage === 0) {
+      setTransitionEnabled(false);
+      setMobilePage(pageCount);
+      setTimeout(() => setTransitionEnabled(true), 0);
+=======
   const next = useCallback(
     (preserveScroll: boolean = true) => {
       triggerFade();
@@ -183,6 +249,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
           window.scrollTo(0, savedY);
         }
       });
+
     }
   };
 
@@ -242,8 +309,18 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
   }, [isInView, isHovered, next]);
 
   useEffect(() => {
+    pageRef.current = page;
+  }, [page]);
+
+  useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
-    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+    const updateIsMobile = () => {
+      const matches = mediaQuery.matches;
+      setIsMobile(matches);
+      if (matches) {
+        setMobilePage(pageRef.current + 1);
+      }
+    };
     updateIsMobile();
     mediaQuery.addEventListener("change", updateIsMobile);
     return () => mediaQuery.removeEventListener("change", updateIsMobile);
@@ -285,37 +362,74 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${(index / itemsPerPage) * 100}%)`,
+              transform: `translateX(-${mobilePage * 100}%)`,
+              transition: transitionEnabled ? undefined : "none",
             }}
+            onTransitionEnd={handleTransitionEnd}
           >
-            {Array.from(
-              { length: Math.ceil(projects.length / itemsPerPage) },
-              (_, pageIndex) => (
-                <div
-                  key={pageIndex}
-                  className="min-w-full grid grid-cols-1 gap-4"
-                >
-                  {projects
-                    .slice(
-                      pageIndex * itemsPerPage,
-                      pageIndex * itemsPerPage + itemsPerPage
-                    )
-                    .map((project, idx) => (
-                      <ProjectCard
-                        key={idx}
-                        title={project.title}
-                        href={project.href}
-                        description={project.description}
-                        dates={project.dates}
-                        tags={project.technologies}
-                        image={project.image}
-                        video={project.video}
-                        links={project.links}
-                      />
-                    ))}
-                </div>
-              )
-            )}
+            {/* Clone of last page at the start */}
+            <div key="clone-last" className="min-w-full grid grid-cols-1 gap-4">
+              {projects
+                .slice((pageCount - 1) * itemsPerPage, pageCount * itemsPerPage)
+                .map((project, idx) => (
+                  <ProjectCard
+                    key={idx}
+                    title={project.title}
+                    href={project.href}
+                    description={project.description}
+                    dates={project.dates}
+                    tags={project.technologies}
+                    image={project.image}
+                    video={project.video}
+                    links={project.links}
+                  />
+                ))}
+            </div>
+
+            {Array.from({ length: pageCount }, (_, pageIndex) => (
+              <div
+                key={pageIndex}
+                className="min-w-full grid grid-cols-1 gap-4"
+              >
+                {projects
+                  .slice(
+                    pageIndex * itemsPerPage,
+                    pageIndex * itemsPerPage + itemsPerPage
+                  )
+                  .map((project, idx) => (
+                    <ProjectCard
+                      key={idx}
+                      title={project.title}
+                      href={project.href}
+                      description={project.description}
+                      dates={project.dates}
+                      tags={project.technologies}
+                      image={project.image}
+                      video={project.video}
+                      links={project.links}
+                    />
+                  ))}
+              </div>
+            ))}
+
+            {/* Clone of first page at the end */}
+            <div key="clone-first" className="min-w-full grid grid-cols-1 gap-4">
+              {projects
+                .slice(0, itemsPerPage)
+                .map((project, idx) => (
+                  <ProjectCard
+                    key={idx}
+                    title={project.title}
+                    href={project.href}
+                    description={project.description}
+                    dates={project.dates}
+                    tags={project.technologies}
+                    image={project.image}
+                    video={project.video}
+                    links={project.links}
+                  />
+                ))}
+            </div>
           </div>
         </div>
       ) : (
@@ -326,19 +440,21 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
             fade ? "opacity-0" : "opacity-100"
           )}
         >
-          {projects.slice(index, index + itemsPerPage).map((project, idx) => (
-            <ProjectCard
-              key={idx}
-              title={project.title}
-              href={project.href}
-              description={project.description}
-              dates={project.dates}
-              tags={project.technologies}
-              image={project.image}
-              video={project.video}
-              links={project.links}
-            />
-          ))}
+          {projects
+            .slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage)
+            .map((project, idx) => (
+              <ProjectCard
+                key={idx}
+                title={project.title}
+                href={project.href}
+                description={project.description}
+                dates={project.dates}
+                tags={project.technologies}
+                image={project.image}
+                video={project.video}
+                links={project.links}
+              />
+            ))}
         </div>
       )}
     </section>
