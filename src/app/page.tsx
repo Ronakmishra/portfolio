@@ -125,7 +125,9 @@ export default function Page() {
         <section id="work">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 5}>
-              <h2 className="text-xl font-bold">Work Experience</h2>
+              <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">
+                Work Experience
+              </h2>
             </BlurFade>
             {DATA.work.map((work: WorkItem, id) => (
               <BlurFade key={work.company} delay={BLUR_FADE_DELAY * 6 + id * 0.05}>
@@ -147,7 +149,9 @@ export default function Page() {
         <section id="education">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 7}>
-              <h2 className="text-xl font-bold">Education</h2>
+              <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">
+                Education
+              </h2>
             </BlurFade>
             {DATA.education.map((education: EducationItem, id) => (
               <BlurFade key={education.school} delay={BLUR_FADE_DELAY * 8 + id * 0.05}>
@@ -167,9 +171,11 @@ export default function Page() {
         <section id="skills">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 9}>
-              <h2 className="text-xl font-bold">Skills</h2>
+              <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">
+                Skills
+              </h2>
             </BlurFade>
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap justify-center gap-2 sm:justify-start sm:gap-1">
               {DATA.skills.map((skill, id) => (
                 <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
                   <Badge key={skill}>{skill}</Badge>
