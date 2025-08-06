@@ -112,10 +112,15 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
   const [disableTransition, setDisableTransition] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const pageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [height, setHeight] = useState<number>();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartX = useRef<number | null>(null);
   const carouselRef = useRef<HTMLElement | null>(null);
   const resetPending = useRef(false);
+  const isMobile =
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 767px)").matches;
 
   const next = useCallback(
     (preserveScroll: boolean = true) => {
@@ -266,6 +271,16 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
     };
   }, [isInView, isHovered, next]);
 
+  useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const currentPage = Math.floor(index / itemsPerPage);
+    if (isMobile) {
+      setHeight(pageRefs.current[currentPage]?.offsetHeight);
+    } else {
+      setHeight(undefined);
+    }
+  }, [index, itemsPerPage]);
+
   return (
     <section
       ref={carouselRef}
@@ -297,7 +312,10 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
         </div>
       </div>
 
-      <div className="overflow-hidden">
+      <div
+        className="overflow-hidden"
+        style={isMobile && height !== undefined ? { height } : undefined}
+      >
         <div
           className={`flex items-start ${disableTransition ? "" : "transition-transform duration-500 ease-in-out"}`}
           style={{
@@ -318,6 +336,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
             return (
               <div
                 key={pageIndex}
+                ref={(el) => (pageRefs.current[pageIndex] = el)}
                 className="min-w-full grid grid-cols-1 md:grid-cols-2 gap-4"
               >
                 {filled.map((project, idx) =>
