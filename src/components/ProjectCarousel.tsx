@@ -336,7 +336,9 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
             return (
               <div
                 key={pageIndex}
-                ref={(el) => (pageRefs.current[pageIndex] = el)}
+                ref={(el) => {
+                  pageRefs.current[pageIndex] = el;
+                }}
                 className="min-w-full grid grid-cols-1 md:grid-cols-2 gap-4"
               >
                 {filled.map((project, idx) =>
