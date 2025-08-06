@@ -299,7 +299,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
 
       <div className="overflow-hidden">
         <div
-          className={`flex ${disableTransition ? "" : "transition-transform duration-500 ease-in-out"}`}
+          className={`flex items-start ${disableTransition ? "" : "transition-transform duration-500 ease-in-out"}`}
           style={{
             transform: `translateX(-${(index / itemsPerPage) * 100}%)`,
           }}
