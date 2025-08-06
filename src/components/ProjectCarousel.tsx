@@ -109,13 +109,13 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
   const itemsPerPage = 4;
   const pageCount = Math.ceil(projects.length / itemsPerPage);
   const totalItems = pageCount * itemsPerPage;
-  const transitionDuration = 500;
   const [disableTransition, setDisableTransition] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartX = useRef<number | null>(null);
   const carouselRef = useRef<HTMLElement | null>(null);
+  const resetPending = useRef(false);
 
   const next = useCallback(
     (preserveScroll: boolean = true) => {
@@ -132,13 +132,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
       const newIndex = index + itemsPerPage;
       setIndex(newIndex);
       if (newIndex >= totalItems) {
-        setTimeout(() => {
-          setDisableTransition(true);
-          setIndex(0);
-          requestAnimationFrame(() => {
-            setDisableTransition(false);
-          });
-        }, transitionDuration);
+        resetPending.current = true;
       }
       if (preserveScroll) {
         requestAnimationFrame(() => {
@@ -228,6 +222,19 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
     setIsHovered(false);
   };
 
+  const handleTransitionEnd = () => {
+    if (resetPending.current) {
+      setDisableTransition(true);
+      setIndex(0);
+      resetPending.current = false;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setDisableTransition(false);
+        });
+      });
+    }
+  };
+
   useEffect(() => {
     const node = carouselRef.current;
     if (!node) return;
@@ -296,6 +303,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
           style={{
             transform: `translateX(-${(index / itemsPerPage) * 100}%)`,
           }}
+          onTransitionEnd={handleTransitionEnd}
         >
           {Array.from({ length: pageCount + 1 }, (_, pageIndex) => {
             const start = pageIndex * itemsPerPage;
