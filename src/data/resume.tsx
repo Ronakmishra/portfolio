@@ -271,6 +271,21 @@ Outside of work, I enjoy building with open-source LLM stacks, exploring tools l
         "Athena",
       ],
       links: [
+        //         {
+        //   type: "Website",
+        //   href: "https://magicui.design",
+        //   icon: <Icons.globe className="size-3" />,
+        // },
+        // {
+        //   type: "Source",
+        //   href: "https://github.com/magicuidesign/magicui",
+        //   icon: <Icons.github className="size-3" />,
+        // },
+        {
+          type: "Demo",
+          href: "https://youtu.be/sW-YuJ52iec",
+          icon: <Icons.youtube className="size-3" />,
+        },
         {
           type: "Source",
           href: "https://github.com/Ronakmishra/Data_Projection",
