@@ -105,9 +105,9 @@ export default function Page() {
 
         <section id="about" className="relative w-full overflow-hidden">
           {/* 🌈 Softer Glow Background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none">
-              <div className="h-[180px] w-full max-w-[800px] rounded-[48px] bg-gradient-to-br from-indigo-300/15 via-pink-300/10 to-purple-300/15 blur-[80px] opacity-40" />
-            </div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none">
+            <div className="h-[180px] w-full max-w-[800px] rounded-[48px] bg-gradient-to-br from-indigo-300/15 via-pink-300/10 to-purple-300/15 blur-[80px] opacity-40" />
+          </div>
 
           {/* Section Content */}
           <div className="space-y-6">
@@ -149,9 +149,7 @@ export default function Page() {
         <section id="education">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 7}>
-              <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">
-                Education
-              </h2>
+              <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">Education</h2>
             </BlurFade>
             {DATA.education.map((education: EducationItem, id) => (
               <BlurFade key={education.school} delay={BLUR_FADE_DELAY * 8 + id * 0.05}>
@@ -171,9 +169,7 @@ export default function Page() {
         <section id="skills">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 9}>
-              <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">
-                Skills
-              </h2>
+              <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">Skills</h2>
             </BlurFade>
             <div className="flex flex-wrap justify-center gap-2 sm:justify-start sm:gap-1">
               {DATA.skills.map((skill, id) => (
@@ -264,8 +260,8 @@ export default function Page() {
                     Check out my latest work
                   </h2>
                   <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    I&apos;ve worked on a variety of projects, from simple websites to
-                    complex web applications. Here are a few of my favorites.
+                    Streaming, predicting, automating - here’s a glimpse at what I’ve been
+                    building lately.
                   </p>
                 </div>
               </div>
