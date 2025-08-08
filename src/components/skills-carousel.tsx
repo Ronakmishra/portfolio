@@ -30,13 +30,14 @@ export default function SkillsCarousel() {
       cardWidth.current =
         firstCard.offsetWidth + parseInt(style.marginRight || "0");
     }
+    const maxScroll = container.scrollWidth / 2;
+    container.scrollLeft = maxScroll;
     const step = () => {
       if (!containerRef.current) return;
       if (!isPaused.current) {
-        containerRef.current.scrollLeft += 0.5;
-        const maxScroll = containerRef.current.scrollWidth / 2;
-        if (containerRef.current.scrollLeft >= maxScroll) {
-          containerRef.current.scrollLeft -= maxScroll;
+        containerRef.current.scrollLeft -= 0.5;
+        if (containerRef.current.scrollLeft <= 0) {
+          containerRef.current.scrollLeft += maxScroll;
         }
       }
       requestAnimationFrame(step);
@@ -86,7 +87,14 @@ export default function SkillsCarousel() {
     const container = containerRef.current;
     if (!container) return;
     pause();
-    container.scrollBy({ left: direction * cardWidth.current, behavior: "smooth" });
+    const maxScroll = container.scrollWidth / 2;
+    let nextScroll = container.scrollLeft + direction * cardWidth.current;
+    if (nextScroll < 0) {
+      nextScroll += maxScroll;
+    } else if (nextScroll >= maxScroll) {
+      nextScroll -= maxScroll;
+    }
+    container.scrollTo({ left: nextScroll, behavior: "smooth" });
     setTimeout(() => play(), 300);
   };
 
@@ -94,7 +102,7 @@ export default function SkillsCarousel() {
 
   return (
     <div className="relative" aria-label="Skills carousel">
-      <div className="absolute right-0 top-0 flex gap-2">
+      <div className="absolute top-2 right-2 z-10 flex gap-2">
         <Button
           variant="outline"
           size="icon"
@@ -138,15 +146,12 @@ export default function SkillsCarousel() {
           {duplicated.map((group, idx) => (
             <div
               key={idx}
-              className="skill-card mr-4 shrink-0 w-64 rounded-lg bg-secondary p-4 flex flex-col gap-2"
+              className="skill-card mr-4 shrink-0 w-64 md:w-72 rounded-lg border bg-card p-4 shadow-sm flex flex-col space-y-3"
             >
-              <h3 className="text-sm font-medium">
-                <span className="mr-2">{group.emoji}</span>
-                {group.title}
-              </h3>
-              <div className="flex flex-wrap gap-1">
+              <h3 className="text-sm font-medium">{group.title}</h3>
+              <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
-                  <Badge key={skill} variant="secondary">
+                  <Badge key={skill} variant="secondary" className="text-xs">
                     {skill}
                   </Badge>
                 ))}

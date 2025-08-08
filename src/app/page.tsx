@@ -252,7 +252,7 @@ export default function Page() {
                   <div className="inline-block rounded-xl bg-foreground text-background px-5 py-2 text-lg font-bold">
                     My Projects
                   </div>
-                  <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
+                  <h2 className="text-xl font-bold">
                     Check out my latest work
                   </h2>
                   <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
