@@ -119,14 +119,17 @@ export default function SkillsCarousel() {
         className="overflow-hidden cursor-grab"
         onMouseEnter={pause}
         onMouseLeave={() => {
-          if (!isDragging.current) play();
+          if (isDragging.current) {
+            endDrag();
+          } else {
+            play();
+          }
         }}
         onFocusCapture={pause}
         onBlurCapture={play}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={endDrag}
-        onMouseLeaveCapture={endDrag}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
