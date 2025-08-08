@@ -11,10 +11,10 @@ import BackgroundNetwork from "@/components/BackgroundNetwork";
 import { Typewriter } from "react-simple-typewriter";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { DATA, type WorkItem, type EducationItem } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
+import SkillsCarousel from "@/components/skills-carousel";
 // for contact
 import ContactForm from "@/components/ContactForm";
 
@@ -171,13 +171,9 @@ export default function Page() {
             <BlurFade delay={BLUR_FADE_DELAY * 9}>
               <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">Skills</h2>
             </BlurFade>
-            <div className="flex flex-wrap justify-center gap-2 sm:justify-start sm:gap-1">
-              {DATA.skills.map((skill, id) => (
-                <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                  <Badge key={skill}>{skill}</Badge>
-                </BlurFade>
-              ))}
-            </div>
+            <BlurFade delay={BLUR_FADE_DELAY * 10}>
+              <SkillsCarousel />
+            </BlurFade>
           </div>
         </section>
 
