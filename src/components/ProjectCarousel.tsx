@@ -119,8 +119,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
   const carouselRef = useRef<HTMLElement | null>(null);
   const resetPending = useRef(false);
   const isMobile =
-    typeof window !== "undefined" &&
-    window.matchMedia("(max-width: 767px)").matches;
+    typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
 
   const next = useCallback(
     (preserveScroll: boolean = true) => {
@@ -129,8 +128,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
       let savedY = 0;
       if (preserveScroll) {
         prevTop = isMobile
-          ? (carouselRef.current?.getBoundingClientRect().top ?? 0) +
-            window.scrollY
+          ? (carouselRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY
           : 0;
         savedY = isMobile ? 0 : window.scrollY;
       }
@@ -143,8 +141,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
         requestAnimationFrame(() => {
           if (isMobile) {
             const newTop =
-              (carouselRef.current?.getBoundingClientRect().top ?? 0) +
-              window.scrollY;
+              (carouselRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY;
             window.scrollBy(0, newTop - prevTop);
           } else {
             window.scrollTo(0, savedY);
@@ -161,8 +158,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
     let savedY = 0;
     if (preserveScroll) {
       prevTop = isMobile
-        ? (carouselRef.current?.getBoundingClientRect().top ?? 0) +
-          window.scrollY
+        ? (carouselRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY
         : 0;
       savedY = isMobile ? 0 : window.scrollY;
     }
@@ -176,8 +172,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
           requestAnimationFrame(() => {
             if (isMobile) {
               const newTop =
-                (carouselRef.current?.getBoundingClientRect().top ?? 0) +
-                window.scrollY;
+                (carouselRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY;
               window.scrollBy(0, newTop - prevTop);
             } else {
               window.scrollTo(0, savedY);
@@ -192,8 +187,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
         requestAnimationFrame(() => {
           if (isMobile) {
             const newTop =
-              (carouselRef.current?.getBoundingClientRect().top ?? 0) +
-              window.scrollY;
+              (carouselRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY;
             window.scrollBy(0, newTop - prevTop);
           } else {
             window.scrollTo(0, savedY);
@@ -291,9 +285,10 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
       onTouchEnd={handleTouchEnd}
     >
       <div className="flex justify-between items-center mb-6">
-        <h3 className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-xl font-bold">
+        <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0 bg-foreground text-background inline-block rounded-lg px-3 py-1">
           Projects
-        </h3>
+        </h2>
+
         <div className="space-x-2">
           <Button
             variant="outline"
@@ -319,7 +314,9 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
         style={isMobile && height !== undefined ? { height } : undefined}
       >
         <div
-          className={`flex items-start ${disableTransition ? "" : "transition-transform duration-500 ease-in-out"}`}
+          className={`flex items-start ${
+            disableTransition ? "" : "transition-transform duration-500 ease-in-out"
+          }`}
           style={{
             transform: `translateX(-${(index / itemsPerPage) * 100}%)`,
           }}
