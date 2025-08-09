@@ -80,12 +80,12 @@ export default function SkillsGrid() {
                 ease: "easeOut",
               }}
               className={cn(
-                "flex flex-col items-center justify-center gap-1 w-24 h-24 text-center rounded-full border border-black text-xs text-black transition-shadow dark:border-white dark:text-white",
+                "flex items-center justify-center gap-2 w-32 h-12 text-center rounded-md border border-black text-xs text-black transition-shadow dark:border-white dark:text-white",
               )}
             >
               <skill.icon
                 className={cn(
-                  "h-8 w-8 flex-shrink-0",
+                  "h-5 w-5 flex-shrink-0",
                 )}
                 aria-hidden="true"
               />
