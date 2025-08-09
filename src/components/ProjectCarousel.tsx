@@ -285,9 +285,7 @@ export default function ProjectCarousel({ projects }: CarouselProps) {
       onTouchEnd={handleTouchEnd}
     >
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0 bg-foreground text-background inline-block rounded-lg px-3 py-1">
-          Projects
-        </h2>
+        <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">Projects</h2>
 
         <div className="space-x-2">
           <Button
