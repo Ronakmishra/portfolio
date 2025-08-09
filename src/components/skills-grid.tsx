@@ -45,10 +45,10 @@ export default function SkillsGrid() {
             onClick={() => setRole(r)}
             aria-pressed={role === r}
             className={cn(
-              "flex-shrink-0 rounded-md px-4 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--highlight)]",
+              "flex-shrink-0 rounded-md px-4 py-1.5 text-sm transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--highlight)] bg-black text-white",
               role === r
-                ? "bg-[var(--highlight)]/20 text-black dark:text-white border border-[var(--highlight)] shadow-[0_0_8px_var(--highlight)]"
-                : "border border-black text-black dark:border-white dark:text-white hover:shadow-[0_0_6px_var(--highlight)]",
+                ? "border border-[var(--highlight)] shadow-[0_0_8px_var(--highlight)]"
+                : "border border-black dark:border-white hover:shadow-[0_0_6px_var(--highlight)]",
             )}
             style={{ "--highlight": HIGHLIGHT_COLOR } as CSSProperties}
           >
@@ -80,18 +80,16 @@ export default function SkillsGrid() {
                 ease: "easeOut",
               }}
               className={cn(
-                "flex items-center gap-1 rounded-full border border-black px-2 py-1 text-xs text-black transition-shadow dark:border-white dark:text-white",
+                "flex flex-col items-center justify-center gap-1 w-24 h-24 text-center rounded-md border border-black text-xs text-black transition-shadow dark:border-white dark:text-white",
               )}
             >
               <skill.icon
                 className={cn(
-                  "h-3 w-3 flex-shrink-0",
+                  "h-8 w-8 flex-shrink-0",
                 )}
                 aria-hidden="true"
               />
-              <span
-                className="text-xs font-medium"
-              >
+              <span className="text-xs font-medium">
                 {skill.label}
               </span>
             </motion.div>
