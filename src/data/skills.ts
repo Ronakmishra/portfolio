@@ -22,7 +22,7 @@ import {
   AreaChart,
 } from "lucide-react";
 
-export type Role = "Data Analyst" | "Data Engineer" | "AI Engineer";
+export type Role = "Data Analytics" | "Data Engineering" | "AI Engineering";
 
 export interface Skill {
   id: string;
@@ -36,13 +36,13 @@ export const SKILLS: readonly Skill[] = [
   {
     id: "python",
     label: "Python",
-    roles: ["Data Analyst", "Data Engineer", "AI Engineer"],
+    roles: ["Data Analytics", "Data Engineering", "AI Engineering"],
     icon: Code,
   },
   {
     id: "sql",
     label: "SQL",
-    roles: ["Data Analyst", "Data Engineer", "AI Engineer"],
+    roles: ["Data Analytics", "Data Engineering", "AI Engineering"],
     icon: Database,
   },
 
@@ -50,31 +50,31 @@ export const SKILLS: readonly Skill[] = [
   {
     id: "pyspark",
     label: "PySpark",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Flame,
   },
   {
     id: "apache-spark",
     label: "Apache Spark",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Flame,
   },
   {
     id: "databricks",
     label: "Databricks",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Layers,
   },
   {
     id: "airflow",
     label: "Airflow",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Wind,
   },
   {
     id: "dbt",
     label: "dbt",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Box,
   },
 
@@ -82,19 +82,19 @@ export const SKILLS: readonly Skill[] = [
   {
     id: "aws",
     label: "AWS",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Cloud,
   },
   {
     id: "gcp",
     label: "GCP",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Cloud,
   },
   {
     id: "azure",
     label: "Azure",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Cloud,
   },
 
@@ -102,31 +102,31 @@ export const SKILLS: readonly Skill[] = [
   {
     id: "snowflake",
     label: "Snowflake",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Snowflake,
   },
   {
     id: "redshift",
     label: "Redshift",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Archive,
   },
   {
     id: "synapse",
     label: "Synapse",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Network,
   },
   {
     id: "delta-lake",
     label: "Delta Lake",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: Triangle,
   },
   {
     id: "parquet",
     label: "Parquet",
-    roles: ["Data Engineer"],
+    roles: ["Data Engineering"],
     icon: FileText,
   },
 
@@ -134,25 +134,25 @@ export const SKILLS: readonly Skill[] = [
   {
     id: "langchain",
     label: "LangChain",
-    roles: ["AI Engineer"],
+    roles: ["AI Engineering"],
     icon: Link2,
   },
   {
     id: "rag",
     label: "RAG",
-    roles: ["AI Engineer"],
+    roles: ["AI Engineering"],
     icon: BookOpen,
   },
   {
     id: "huggingface",
     label: "HuggingFace",
-    roles: ["AI Engineer"],
+    roles: ["AI Engineering"],
     icon: Smile,
   },
   {
     id: "scikit-learn",
     label: "scikit-learn",
-    roles: ["AI Engineer"],
+    roles: ["AI Engineering"],
     icon: Brain,
   },
 
@@ -160,19 +160,19 @@ export const SKILLS: readonly Skill[] = [
   {
     id: "mysql",
     label: "MySQL",
-    roles: ["Data Analyst", "Data Engineer"],
+    roles: ["Data Analytics", "Data Engineering"],
     icon: Database,
   },
   {
     id: "postgresql",
     label: "PostgreSQL",
-    roles: ["Data Analyst", "Data Engineer"],
+    roles: ["Data Analytics", "Data Engineering"],
     icon: Database,
   },
   {
     id: "mongodb",
     label: "MongoDB",
-    roles: ["Data Analyst", "Data Engineer"],
+    roles: ["Data Analytics", "Data Engineering"],
     icon: Leaf,
   },
 
@@ -180,19 +180,19 @@ export const SKILLS: readonly Skill[] = [
   {
     id: "power-bi",
     label: "Power BI",
-    roles: ["Data Analyst"],
+    roles: ["Data Analytics"],
     icon: BarChart3,
   },
   {
     id: "tableau",
     label: "Tableau",
-    roles: ["Data Analyst"],
+    roles: ["Data Analytics"],
     icon: TableIcon,
   },
   {
     id: "quicksight",
     label: "QuickSight",
-    roles: ["Data Analyst"],
+    roles: ["Data Analytics"],
     icon: AreaChart,
   },
 ] as const;
