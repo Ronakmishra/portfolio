@@ -166,14 +166,15 @@ export default function Page() {
             ))}
           </div>
         </section>
-        <section id="skills">
-          <div className="flex min-h-0 flex-col gap-y-3">
+        <section id="skills" className="relative w-full py-20">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/10 to-indigo-500/20 blur-3xl opacity-60" />
+          </div>
+          <div className="w-full max-w-5xl mx-auto flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 9}>
               <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">Skills</h2>
             </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 10}>
-              <SkillsGrid />
-            </BlurFade>
+            <SkillsGrid />
           </div>
         </section>
 
