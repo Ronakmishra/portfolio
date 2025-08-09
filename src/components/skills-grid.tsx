@@ -10,7 +10,7 @@ const ROLE_TABS: readonly (Role | "All")[] = [
   "All",
   "Data Engineering",
   "Data Analytics",
-  "AI Engineering",
+  "AI",
 ] as const;
 
 // Subtle pink-violet accent
@@ -80,7 +80,7 @@ export default function SkillsGrid() {
                 ease: "easeOut",
               }}
               className={cn(
-                "flex flex-col items-center justify-center gap-1 w-24 h-24 text-center rounded-md border border-black text-xs text-black transition-shadow dark:border-white dark:text-white",
+                "flex flex-col items-center justify-center gap-1 w-24 h-24 text-center rounded-full border border-black text-xs text-black transition-shadow dark:border-white dark:text-white",
               )}
             >
               <skill.icon
