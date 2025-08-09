@@ -13,21 +13,23 @@ const ROLE_TABS: readonly (Role | "All")[] = [
   "AI Engineering",
 ] as const;
 
-const HIGHLIGHT_COLOR = "#FFB100";
+// Soft pink accent used throughout the site
+const HIGHLIGHT_COLOR = "rgba(255,110,199,0.7)";
 
+// Staggered animation with blur-to-clear effect
 const container = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.06,
     },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 12, filter: "blur(4px)" },
+  show: { opacity: 1, y: 0, filter: "blur(0px)" },
+  exit: { opacity: 0, y: 12, filter: "blur(4px)" },
 };
 
 export default function SkillsGrid() {
@@ -46,10 +48,10 @@ export default function SkillsGrid() {
             onClick={() => setRole(r)}
             aria-pressed={role === r}
             className={cn(
-              "flex-shrink-0 rounded-full px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--highlight)]",
+              "flex-shrink-0 rounded-full px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--highlight)]",
               role === r
-                ? "bg-[var(--highlight)] text-black"
-                : "bg-black text-white hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/80",
+                ? "bg-[var(--highlight)] text-black shadow-[0_0_8px_var(--highlight)]"
+                : "bg-white text-black hover:shadow-[0_0_8px_var(--highlight)] dark:bg-black dark:text-white",
             )}
             style={{ "--highlight": HIGHLIGHT_COLOR } as CSSProperties}
           >
@@ -64,25 +66,22 @@ export default function SkillsGrid() {
           initial="hidden"
           animate="show"
           exit="hidden"
-          className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4"
+          className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4"
         >
           {skills.map((skill) => (
             <motion.div
               key={skill.id}
               variants={item}
               className={cn(
-                "flex h-20 w-full items-center justify-center gap-3 rounded-full px-4 shadow-sm transition-transform",
-                "bg-black dark:bg-white",
+                "flex h-10 w-full items-center justify-center gap-2 rounded-full px-3 transition-shadow",
                 role === "All"
-                  ? "text-white dark:text-black hover:scale-105"
-                  : "text-[var(--highlight)]",
+                  ? "bg-white text-black hover:shadow-[0_0_8px_var(--highlight)] dark:bg-black dark:text-white"
+                  : "bg-[var(--highlight)] text-black shadow-[0_0_8px_var(--highlight)]",
               )}
               style={{ "--highlight": HIGHLIGHT_COLOR } as CSSProperties}
             >
-              <skill.icon className="h-10 w-10 flex-shrink-0" aria-hidden="true" />
-              <span className="text-sm font-medium sm:text-base">
-                {skill.label}
-              </span>
+              <skill.icon className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+              <span className="text-sm font-medium">{skill.label}</span>
             </motion.div>
           ))}
         </motion.div>
