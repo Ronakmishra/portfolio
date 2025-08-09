@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA, type WorkItem, type EducationItem } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
-import SkillsCarousel from "@/components/skills-carousel";
+import SkillsGrid from "@/components/skills-grid";
 // for contact
 import ContactForm from "@/components/ContactForm";
 
@@ -172,7 +172,7 @@ export default function Page() {
               <h2 className="text-xl font-bold mt-8 mb-4 sm:mt-0 sm:mb-0">Skills</h2>
             </BlurFade>
             <BlurFade delay={BLUR_FADE_DELAY * 10}>
-              <SkillsCarousel />
+              <SkillsGrid />
             </BlurFade>
           </div>
         </section>
