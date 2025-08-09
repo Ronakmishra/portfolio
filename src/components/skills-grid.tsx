@@ -1,15 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { SKILLS, type Role } from "@/data/skills";
 import { cn } from "@/lib/utils";
 
 const ROLE_TABS: readonly (Role | "All")[] = [
   "All",
-  "Data Analyst",
-  "Data Engineer",
-  "AI Engineer",
+  "Data Engineering",
+  "Data Analytics",
+  "AI Engineering",
 ] as const;
+
+const HIGHLIGHT_COLOR = "#FFB100";
 
 export default function SkillsGrid() {
   const [role, setRole] = useState<(typeof ROLE_TABS)[number]>("All");
@@ -24,17 +26,18 @@ export default function SkillsGrid() {
             onClick={() => setRole(r)}
             aria-pressed={role === r}
             className={cn(
-              "px-3 py-1 rounded-full text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              "rounded-full px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--highlight)]",
               role === r
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted text-muted-foreground hover:bg-muted/80"
+                ? "bg-[var(--highlight)] text-black"
+                : "bg-black text-white hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/80",
             )}
+            style={{ "--highlight": HIGHLIGHT_COLOR } as CSSProperties}
           >
             {r}
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="flex flex-wrap justify-center gap-3">
         {SKILLS.map((skill) => {
           const active = role === "All" || skill.roles.includes(role as Role);
           return (
@@ -42,15 +45,31 @@ export default function SkillsGrid() {
               key={skill.id}
               tabIndex={0}
               className={cn(
-                "flex flex-col items-center justify-center gap-2 rounded-lg p-4 text-sm font-medium transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                "hover:scale-105",
-                active
-                  ? "bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/50 shadow-sm"
-                  : "border border-muted bg-muted text-muted-foreground opacity-60"
+                "flex h-12 items-center gap-2 rounded-full px-4 text-sm font-medium transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--highlight)]",
+                "hover:scale-105 shadow-sm",
+                "bg-black text-white dark:bg-white dark:text-black",
               )}
+              style={{ "--highlight": HIGHLIGHT_COLOR } as CSSProperties}
             >
-              <skill.icon className="h-6 w-6" aria-hidden="true" />
-              {skill.label}
+              <skill.icon
+                className={cn(
+                  "h-5 w-5 transition-colors",
+                  role === "All"
+                    ? ""
+                    : active
+                      ? "text-[var(--highlight)]"
+                      : "text-gray-400 opacity-50",
+                )}
+                aria-hidden="true"
+              />
+              <span
+                className={cn(
+                  "transition-colors",
+                  role === "All" ? "" : active ? "" : "text-gray-400 opacity-50",
+                )}
+              >
+                {skill.label}
+              </span>
             </div>
           );
         })}
