@@ -45,10 +45,10 @@ export default function SkillsGrid() {
             onClick={() => setRole(r)}
             aria-pressed={role === r}
             className={cn(
-              "flex-shrink-0 rounded-full px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--highlight)]",
+              "flex-shrink-0 rounded-md px-4 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--highlight)]",
               role === r
-                ? "bg-black text-white ring-1 ring-[var(--highlight)] shadow-[0_0_6px_var(--highlight)] dark:bg-white dark:text-black"
-                : "border border-black text-black hover:shadow-[0_0_6px_var(--highlight)] dark:border-white dark:text-white",
+                ? "bg-[var(--highlight)]/20 text-black dark:text-white border border-[var(--highlight)] shadow-[0_0_8px_var(--highlight)]"
+                : "border border-black text-black dark:border-white dark:text-white hover:shadow-[0_0_6px_var(--highlight)]",
             )}
             style={{ "--highlight": HIGHLIGHT_COLOR } as CSSProperties}
           >
@@ -59,7 +59,7 @@ export default function SkillsGrid() {
       <motion.div
         className="grid grid-cols-2 gap-2 justify-items-center sm:grid-cols-3 md:grid-cols-4"
       >
-        <AnimatePresence initial={false} mode="sync">
+        <AnimatePresence initial={false} mode="wait">
           {skills.map((skill, i) => (
             <motion.div
               key={skill.id}
@@ -75,28 +75,22 @@ export default function SkillsGrid() {
                 filter: prefersReducedMotion ? "none" : "blur(4px)",
               }}
               transition={{
-                delay: 0.2 + i * 0.06,
+                delay: i * 0.05,
                 duration: 0.2,
                 ease: "easeOut",
               }}
               className={cn(
-                "flex h-10 w-full items-center justify-center gap-2 rounded-full px-3 transition-shadow bg-black text-white dark:bg-white dark:text-black",
-                role !== "All" && "shadow-[0_0_6px_var(--highlight)]",
+                "flex items-center gap-1 rounded-full border border-black px-2 py-1 text-xs text-black transition-shadow dark:border-white dark:text-white",
               )}
-              style={{ "--highlight": HIGHLIGHT_COLOR } as CSSProperties}
             >
               <skill.icon
                 className={cn(
-                  "h-4 w-4 flex-shrink-0",
-                  role !== "All" && "text-[var(--highlight)]",
+                  "h-3 w-3 flex-shrink-0",
                 )}
                 aria-hidden="true"
               />
               <span
-                className={cn(
-                  "text-sm font-medium",
-                  role !== "All" && "text-[var(--highlight)]",
-                )}
+                className="text-xs font-medium"
               >
                 {skill.label}
               </span>
