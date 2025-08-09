@@ -22,7 +22,7 @@ import {
   AreaChart,
 } from "lucide-react";
 
-export type Role = "Data Analytics" | "Data Engineering" | "AI Engineering";
+export type Role = "Data Analytics" | "Data Engineering" | "AI";
 
 export interface Skill {
   id: string;
@@ -36,13 +36,13 @@ export const SKILLS: readonly Skill[] = [
   {
     id: "python",
     label: "Python",
-    roles: ["Data Analytics", "Data Engineering", "AI Engineering"],
+    roles: ["Data Analytics", "Data Engineering", "AI"],
     icon: Code,
   },
   {
     id: "sql",
     label: "SQL",
-    roles: ["Data Analytics", "Data Engineering", "AI Engineering"],
+    roles: ["Data Analytics", "Data Engineering", "AI"],
     icon: Database,
   },
 
@@ -134,25 +134,25 @@ export const SKILLS: readonly Skill[] = [
   {
     id: "langchain",
     label: "LangChain",
-    roles: ["AI Engineering"],
+    roles: ["AI"],
     icon: Link2,
   },
   {
     id: "rag",
     label: "RAG",
-    roles: ["AI Engineering"],
+    roles: ["AI"],
     icon: BookOpen,
   },
   {
     id: "huggingface",
     label: "HuggingFace",
-    roles: ["AI Engineering"],
+    roles: ["AI"],
     icon: Smile,
   },
   {
     id: "scikit-learn",
     label: "scikit-learn",
-    roles: ["AI Engineering"],
+    roles: ["AI"],
     icon: Brain,
   },
 
